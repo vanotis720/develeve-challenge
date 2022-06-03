@@ -1,11 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
-
-import GetStarted from "./src/components/page/GetStarted";
+import StartedStack from './src/navigation/StartedStack';
 
 export default function App() {
 	return (
 		<NavigationContainer>
-			<GetStarted></GetStarted>
+			<StartedStack />
 		</NavigationContainer>
 	);
 }

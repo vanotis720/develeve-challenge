@@ -3,8 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../../theme/colors';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
-
-function GetStarted() {
+function GetStarted({ navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle='light' backgroundColor={colors.PRIMARY} />
@@ -19,7 +18,10 @@ function GetStarted() {
                 <Text style={styles.description}>
                     Apprenez une nouvelle profession dans le confort de votre maison ou n'importe où.
                 </Text>
-                <TouchableOpacity style={styles.action}>
+                <TouchableOpacity
+                    style={styles.action}
+                    onPress={navigation.navigate('Auth')}
+                >
                     <MaterialCommunityIcons name="arrow-right" size={40} color={colors.WHITE} />
                 </TouchableOpacity>
             </View>
