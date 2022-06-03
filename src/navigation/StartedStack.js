@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator();
 
 function StartedStack() {
     return (
-        <Stack.Navigator initialRouteName="Auth">
+        <Stack.Navigator initialRouteName="GetStarted">
             <Stack.Screen
                 name="GetStarted"
                 component={GetStarted}

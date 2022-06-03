@@ -20,7 +20,7 @@ function GetStarted({ navigation }) {
                 </Text>
                 <TouchableOpacity
                     style={styles.action}
-                    onPress={navigation.navigate('Auth')}
+                    onPress={() => navigation.navigate('Auth')}
                 >
                     <MaterialCommunityIcons name="arrow-right" size={40} color={colors.WHITE} />
                 </TouchableOpacity>
