@@ -2,6 +2,11 @@
   "name": "develeve",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "author": {
+    "name": "vander otis",
+    "email": "business@vanotis720.tech",
+    "url": "https://vanotis720.tech"
+  },
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
