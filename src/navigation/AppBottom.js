@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../components/page/Home';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import colors from '../theme/colors';
+import Profile from '../components/page/Profile';
 
 const Tab = createBottomTabNavigator();
 
@@ -50,7 +51,7 @@ export default function AppBottom() {
             />
             <Tab.Screen
                 name="Account"
-                component={Home}
+                component={Profile}
                 options={{
                     tabBarLabel: 'Profile',
                     tabBarIcon: ({ color, size }) => (

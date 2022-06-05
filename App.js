@@ -24,7 +24,6 @@ export default function App() {
 		bootstrapAsync();
 	}, []);
 
-
 	return (
 		<NavigationContainer>
 			{state == false ? (
