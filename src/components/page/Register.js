@@ -55,7 +55,6 @@ function Register({ navigation }) {
                 setEmail('');
                 setPassword('');
                 storeData(username);
-                navigation.navigate('Login');
             } else {
                 throw new Error("An error has occurred");
             }

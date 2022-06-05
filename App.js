@@ -15,7 +15,8 @@ export default function App() {
 
 			try {
 				userName = await AsyncStorage.getItem('username');
-				setState(true);
+				(userName != null) ? setState(true) : '';
+				console.log(userName);
 			} catch (e) {
 				// Restoring token failed
 			}

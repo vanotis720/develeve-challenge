@@ -1,6 +1,6 @@
 import * as React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { StatusBar, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../../theme/colors';
 
@@ -20,6 +20,16 @@ function Profile({ navigation }) {
 
         bootstrapAsync();
     }, []);
+
+    const logout = async () => {
+        try {
+            await AsyncStorage.removeItem('username');
+        } catch (e) {
+            // remove error
+        }
+
+        console.log('logged out.')
+    }
 
 
     return (
@@ -57,14 +67,95 @@ function Profile({ navigation }) {
                         <TouchableOpacity style={styles.actionAddCourse}>
                             <Text style={styles.textAddCourse}>Ajouter un Cours</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.actionLogout}>
+                        <TouchableOpacity
+                            style={styles.actionLogout}
+                            onPress={() => logout()}
+                        >
                             <Text style={styles.textActionLogout}>Se deconnecter</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
             </View>
             <View style={styles.downSection}>
-
+                <ScrollView style={{ flex: 1 }}>
+                    <Text style={styles.sectionTitle}>Cours en tendances</Text>
+                    <View style={styles.courseCard}>
+                        <View style={styles.courseCardHeader}>
+                            <Image
+                                source={require('../../assets/images/defaultAvatar.jpeg')}
+                                style={styles.courseCover}
+                            />
+                        </View>
+                        <View style={styles.courseCardContent}>
+                            <View style={styles.courseCardAuthor}>
+                                <Text style={styles.authorName}>
+                                    Jean-marie Luckas
+                                </Text>
+                            </View>
+                            <Text style={styles.courseTitle}>Le web 3</Text>
+                            <Text style={styles.courseOverview}>
+                                le web 3 est fait de n'importe quoi a la base...
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={styles.courseCard}>
+                        <View style={styles.courseCardHeader}>
+                            <Image
+                                source={require('../../assets/images/defaultAvatar.jpeg')}
+                                style={styles.courseCover}
+                            />
+                        </View>
+                        <View style={styles.courseCardContent}>
+                            <View style={styles.courseCardAuthor}>
+                                <Text style={styles.authorName}>
+                                    Jean-marie Luckas
+                                </Text>
+                            </View>
+                            <Text style={styles.courseTitle}>Le web 3</Text>
+                            <Text style={styles.courseOverview}>
+                                le web 3 est fait de n'importe quoi a la base...
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={styles.courseCard}>
+                        <View style={styles.courseCardHeader}>
+                            <Image
+                                source={require('../../assets/images/defaultAvatar.jpeg')}
+                                style={styles.courseCover}
+                            />
+                        </View>
+                        <View style={styles.courseCardContent}>
+                            <View style={styles.courseCardAuthor}>
+                                <Text style={styles.authorName}>
+                                    Jean-marie Luckas
+                                </Text>
+                            </View>
+                            <Text style={styles.courseTitle}>Le web 3</Text>
+                            <Text style={styles.courseOverview}>
+                                le web 3 est fait de n'importe quoi a la base...
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={styles.courseCard}>
+                        <View style={styles.courseCardHeader}>
+                            <Image
+                                source={require('../../assets/images/defaultAvatar.jpeg')}
+                                style={styles.courseCover}
+                            />
+                        </View>
+                        <View style={styles.courseCardContent}>
+                            <View style={styles.courseCardAuthor}>
+                                <Text style={styles.authorName}>
+                                    Jean-marie Luckas
+                                </Text>
+                            </View>
+                            <Text style={styles.courseTitle}>Le web 3</Text>
+                            <Text style={styles.courseOverview}>
+                                le web 3 est fait de n'importe quoi a la base...
+                            </Text>
+                        </View>
+                    </View>
+                </ScrollView>
             </View>
         </SafeAreaView>
     )
@@ -89,8 +180,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.WHITE,
         borderRadius: 15,
         marginTop: '25%',
-        borderColor: colors.GRAY,
-        borderWidth: 1
+        elevation: 10,
+        shadowColor: colors.BLACK,
     },
     userCardHeader: {
         flex: 2,
@@ -159,7 +250,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#DAE3EC',
         borderRadius: 10,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        paddingVertical: 5
     },
     statsContent: {
         flex: 1,
@@ -176,19 +268,72 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
 
-
-
-
     downSection: {
         flex: 2,
+        marginHorizontal: 20,
+        marginTop: '15%',
     },
-    title: {
+    sectionTitle: {
         color: colors.BLACK,
-        fontSize: 30,
-        marginBottom: 20,
+        fontSize: 20,
+        marginBottom: 15,
         fontWeight: 'bold',
-        textAlign: 'center'
     },
+    courseCard: {
+        flex: 1,
+        backgroundColor: colors.PUREWHITE,
+        width: '100%',
+        height: 200,
+        borderRadius: 15,
+        paddingBottom: 15,
+        marginBottom: 15,
+
+    },
+    courseCardHeader: {
+        flex: 2,
+        margin: 8,
+    },
+    courseCardContent: {
+        flex: 1,
+        marginHorizontal: 20
+    },
+    courseCover: {
+        flex: 1,
+        height: '100%',
+        width: '100%',
+        resizeMode: 'contain',
+        borderRadius: 10,
+    },
+    courseTitle: {
+        color: colors.BLACK,
+        fontSize: 18,
+        paddingTop: 5
+    },
+    courseOverview: {
+        color: colors.GRAY,
+        fontSize: 16,
+    },
+    courseCardAuthor: {
+        flex: 1,
+        backgroundColor: colors.PUREWHITE,
+        width: '40%',
+        borderRadius: 15,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: -30,
+        elevation: 10,
+        shadowColor: colors.BLACK,
+    },
+    authorName: {
+        color: colors.BLACK,
+        fontSize: 13,
+    },
+
+
+
+
+
+
     description: {
         color: colors.GRAY,
         fontSize: 16,
