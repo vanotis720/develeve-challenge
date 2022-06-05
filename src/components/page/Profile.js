@@ -1,9 +1,27 @@
+import * as React from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../../theme/colors';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 function Profile({ navigation }) {
+    const [username, setUsername] = React.useState('default');
+
+    React.useEffect(() => {
+        const bootstrapAsync = async () => {
+
+            try {
+                setUsername(await AsyncStorage.getItem('username'));
+
+            } catch (e) {
+                setUsername('anonyme');
+            }
+        };
+
+        bootstrapAsync();
+    }, []);
+
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle='light' backgroundColor={colors.PRIMARY} />
@@ -16,7 +34,7 @@ function Profile({ navigation }) {
                         />
                         <View style={styles.userCardInformation}>
                             <View style={{ flex: 1, paddingBottom: 10 }}>
-                                <Text style={styles.username}>Vander Otis</Text>
+                                <Text style={styles.username}>{username}</Text>
                                 <Text style={styles.email}>business@vanotis720.tech</Text>
                             </View>
                             <View style={styles.statsCard}>
@@ -126,8 +144,8 @@ const styles = StyleSheet.create({
         flex: 2
     },
     username: {
-        fontSize: 18,
-        fontWeight: '600',
+        fontSize: 20,
+        fontWeight: 'bold',
         color: colors.BLACK,
     },
     email: {
