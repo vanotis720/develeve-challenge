@@ -4,6 +4,8 @@ import Home from '../components/page/Home';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import colors from '../theme/colors';
 import Profile from '../components/page/Profile';
+import Favorite from '../components/page/Favorite';
+import CourseForm from '../components/page/CourseForm';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +22,7 @@ export default function AppBottom() {
                 name="Home"
                 component={Home}
                 options={{
-                    tabBarLabel: 'Home',
+                    tabBarLabel: 'Accueil',
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="home" color={color} size={size} />
                     ),
@@ -29,7 +31,7 @@ export default function AppBottom() {
             />
             <Tab.Screen
                 name="Course"
-                component={Home}
+                component={CourseForm}
                 options={{
                     tabBarLabel: 'Cours',
                     tabBarIcon: ({ color, size }) => (
@@ -40,7 +42,7 @@ export default function AppBottom() {
             />
             <Tab.Screen
                 name="Favorite"
-                component={Home}
+                component={Favorite}
                 options={{
                     tabBarLabel: 'Favoris',
                     tabBarIcon: ({ color, size }) => (
@@ -53,7 +55,7 @@ export default function AppBottom() {
                 name="Account"
                 component={Profile}
                 options={{
-                    tabBarLabel: 'Profile',
+                    tabBarLabel: 'Compte',
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="account" color={color} size={size} />
                     ),
