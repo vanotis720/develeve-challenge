@@ -27,16 +27,16 @@ function Profile({ navigation }) {
                             </View>
                             <View style={styles.statsCard}>
                                 <View style={styles.statsContent}>
-                                    <Text style={styles.statsTitle}>Cours</Text>
-                                    <Text style={styles.statsNumber}>102</Text>
+                                    <Text style={styles.statsTitle} adjustsFontSizeToFit={true} numberOfLines={1}>Cours</Text>
+                                    <Text style={styles.statsNumber} adjustsFontSizeToFit={true} numberOfLines={1}>102</Text>
                                 </View>
                                 <View style={styles.statsContent}>
-                                    <Text style={styles.statsTitle}>Favoris</Text>
-                                    <Text style={styles.statsNumber}>12</Text>
+                                    <Text style={styles.statsTitle} adjustsFontSizeToFit={true} numberOfLines={1}>Favoris</Text>
+                                    <Text style={styles.statsNumber} adjustsFontSizeToFit={true} numberOfLines={1}>12</Text>
                                 </View>
                                 <View style={styles.statsContent}>
-                                    <Text style={styles.statsTitle}>Id</Text>
-                                    <Text style={styles.statsNumber}>#{userInfo.id}</Text>
+                                    <Text style={styles.statsTitle} adjustsFontSizeToFit={true} numberOfLines={1}>Id</Text>
+                                    <Text style={styles.statsNumber} adjustsFontSizeToFit={true} numberOfLines={1}>#{userInfo.id}</Text>
                                 </View>
                             </View>
                         </View>
@@ -59,6 +59,28 @@ function Profile({ navigation }) {
             <View style={styles.downSection}>
                 <ScrollView style={{ flex: 1 }}>
                     <Text style={styles.sectionTitle}>Cours en tendances</Text>
+                    <TouchableOpacity
+                        style={styles.courseCard}
+                        onPress={() => { alert('go to course detail') }}
+                    >
+                        <View style={styles.courseCardHeader}>
+                            <Image
+                                source={require('../../assets/images/defaultAvatar.jpeg')}
+                                style={styles.courseCover}
+                            />
+                        </View>
+                        <View style={styles.courseCardContent}>
+                            <View style={styles.courseCardAuthor}>
+                                <Text style={styles.authorName} adjustsFontSizeToFit={true} numberOfLines={1}>
+                                    Jean-marie Luckas
+                                </Text>
+                            </View>
+                            <Text style={styles.courseTitle}>Le web 3</Text>
+                            <Text style={styles.courseOverview}>
+                                le web 3 est fait de n'importe quoi a la base...
+                            </Text>
+                        </View>
+                    </TouchableOpacity>
                     <View style={styles.courseCard}>
                         <View style={styles.courseCardHeader}>
                             <Image
@@ -68,7 +90,7 @@ function Profile({ navigation }) {
                         </View>
                         <View style={styles.courseCardContent}>
                             <View style={styles.courseCardAuthor}>
-                                <Text style={styles.authorName}>
+                                <Text style={styles.authorName} adjustsFontSizeToFit={true} numberOfLines={1}>
                                     Jean-marie Luckas
                                 </Text>
                             </View>
@@ -87,7 +109,7 @@ function Profile({ navigation }) {
                         </View>
                         <View style={styles.courseCardContent}>
                             <View style={styles.courseCardAuthor}>
-                                <Text style={styles.authorName}>
+                                <Text style={styles.authorName} adjustsFontSizeToFit={true} numberOfLines={1}>
                                     Jean-marie Luckas
                                 </Text>
                             </View>
@@ -106,26 +128,7 @@ function Profile({ navigation }) {
                         </View>
                         <View style={styles.courseCardContent}>
                             <View style={styles.courseCardAuthor}>
-                                <Text style={styles.authorName}>
-                                    Jean-marie Luckas
-                                </Text>
-                            </View>
-                            <Text style={styles.courseTitle}>Le web 3</Text>
-                            <Text style={styles.courseOverview}>
-                                le web 3 est fait de n'importe quoi a la base...
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={styles.courseCard}>
-                        <View style={styles.courseCardHeader}>
-                            <Image
-                                source={require('../../assets/images/defaultAvatar.jpeg')}
-                                style={styles.courseCover}
-                            />
-                        </View>
-                        <View style={styles.courseCardContent}>
-                            <View style={styles.courseCardAuthor}>
-                                <Text style={styles.authorName}>
+                                <Text style={styles.authorName} adjustsFontSizeToFit={true} numberOfLines={1}>
                                     Jean-marie Luckas
                                 </Text>
                             </View>
@@ -296,40 +299,17 @@ const styles = StyleSheet.create({
     courseCardAuthor: {
         flex: 1,
         backgroundColor: colors.PUREWHITE,
-        width: '50%',
-        borderRadius: 15,
+        width: '40%',
+        borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '-20%',
+        marginTop: '-15%',
         elevation: 10,
-        shadowColor: colors.BLACK,
+        shadowColor: colors.PRIMARY,
     },
     authorName: {
         color: colors.BLACK,
         fontSize: 15,
-    },
-
-
-
-
-
-
-    description: {
-        color: colors.GRAY,
-        fontSize: 16,
-        marginBottom: 30,
-        textAlign: 'center'
-    },
-    action: {
-        backgroundColor: colors.SECONDARY,
-        borderRadius: 30,
-        height: 60,
-        width: 60,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    cover: {
-        width: '100%',
     }
 });
 
