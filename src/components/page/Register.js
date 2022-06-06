@@ -1,69 +1,19 @@
-import React, { useState } from "react";
-import axios from "axios";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useContext, useState } from "react";
 import { StatusBar, StyleSheet, Text, View, TouchableOpacity, Image, TextInput, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../../theme/colors';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-
-const baseUrl = "https://reqres.in";
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 function Register({ navigation }) {
 
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [isLoading, setIsLoading] = useState(false);
+    const [name, setName] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [password, setPassword] = useState(null);
 
-    const onChangeNameHandler = (username) => {
-        setUsername(username);
-    };
+    const { isLoading, register } = useContext(AuthContext);
 
-    const onChangeEmailHandler = (email) => {
-        setEmail(email);
-    };
-
-    const onChangePasswordHandler = (password) => {
-        setPassword(password);
-    };
-
-    const storeData = async (username) => {
-        try {
-            await AsyncStorage.setItem('username', username)
-        } catch (e) {
-            throw new Error("An error has occurred with storage");
-        }
-    }
-
-    const onSubmitFormHandler = async (event) => {
-        if (!username.trim() || !email.trim() || !password.trim()) {
-            alert("Name or Email is invalid");
-            return;
-        }
-        setIsLoading(true);
-        try {
-            const response = await axios.post(`${baseUrl}/api/users`, {
-                username,
-                email,
-                password
-            });
-            if (response.status === 201) {
-                alert(` You have created: ${JSON.stringify(response.data)}`);
-                setIsLoading(false);
-                setUsername('');
-                setEmail('');
-                setPassword('');
-                storeData(username);
-            } else {
-                throw new Error("An error has occurred");
-            }
-        } catch (error) {
-            alert("An error has occurred");
-            console.log(error);
-            setIsLoading(false);
-        }
-    };
 
     return (
         <SafeAreaView style={styles.container}>
@@ -83,9 +33,9 @@ function Register({ navigation }) {
                     <TextInput
                         style={styles.input}
                         placeholder="Nom d'Utilisateur"
-                        value={username}
+                        value={name}
                         editable={!isLoading}
-                        onChangeText={onChangeNameHandler}
+                        onChangeText={text => setName(text)}
                     />
                 </View>
                 <View style={styles.inputBox}>
@@ -95,7 +45,7 @@ function Register({ navigation }) {
                         placeholder='Adresse Email'
                         value={email}
                         editable={!isLoading}
-                        onChangeText={onChangeEmailHandler}
+                        onChangeText={text => setEmail(text)}
                     />
                 </View>
                 <View style={styles.inputBox}>
@@ -105,13 +55,15 @@ function Register({ navigation }) {
                         secureTextEntry
                         value={password}
                         editable={!isLoading}
-                        onChangeText={onChangePasswordHandler}
+                        onChangeText={text => setPassword(text)}
                     />
                 </View>
 
                 <TouchableOpacity
                     style={styles.action}
-                    onPress={onSubmitFormHandler}
+                    onPress={() => {
+                        register(name, email, password);
+                    }}
                     disabled={isLoading}
                 >
                     {isLoading ? (

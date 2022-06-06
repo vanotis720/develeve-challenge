@@ -1,6 +1,6 @@
 
 //API URL
-export const BASE_URL = "http://localhost:8000/api"
+export const BASE_URL = "https://dealapi.herokuapp.com/api"
 
 //API End Points
 export const REGISTER = `${BASE_URL}/register`;

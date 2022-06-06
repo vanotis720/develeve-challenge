@@ -1,20 +1,14 @@
-import * as React from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useContext } from "react";
 import { StatusBar, StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../../theme/colors';
-import { selectEmail, selectUserName, setSignOut } from '../../redux/slices/authSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { AuthContext } from "../../providers/AuthProvider";
+
 
 function Profile({ navigation }) {
-    const userName = useSelector(selectUserName);
-    const userEmail = useSelector(selectEmail);
 
-    const dispatch = useDispatch();
-
-    const handleLogout = () => {
-        dispatch(setSignOut());
-    }
+    const { isLoading, logout, userInfo } = useContext(AuthContext);
+    console.log(userInfo);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -28,8 +22,8 @@ function Profile({ navigation }) {
                         />
                         <View style={styles.userCardInformation}>
                             <View style={{ flex: 1, paddingBottom: 10 }}>
-                                <Text style={styles.username}>{userName}</Text>
-                                <Text style={styles.email}>{userEmail}</Text>
+                                <Text style={styles.username}>{userInfo.name}</Text>
+                                <Text style={styles.email}>{userInfo.email}</Text>
                             </View>
                             <View style={styles.statsCard}>
                                 <View style={styles.statsContent}>
@@ -42,7 +36,7 @@ function Profile({ navigation }) {
                                 </View>
                                 <View style={styles.statsContent}>
                                     <Text style={styles.statsTitle}>Id</Text>
-                                    <Text style={styles.statsNumber}>#1</Text>
+                                    <Text style={styles.statsNumber}>#{userInfo.id}</Text>
                                 </View>
                             </View>
                         </View>
@@ -53,7 +47,9 @@ function Profile({ navigation }) {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.actionLogout}
-                            onPress={() => handleLogout()}
+                            onPress={() => {
+                                logout();
+                            }}
                         >
                             <Text style={styles.textActionLogout}>Se deconnecter</Text>
                         </TouchableOpacity>
