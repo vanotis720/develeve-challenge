@@ -43,7 +43,12 @@ function Profile({ navigation }) {
                         </View>
                     </View>
                     <View style={styles.userCardAction}>
-                        <TouchableOpacity style={styles.actionAddCourse}>
+                        <TouchableOpacity
+                            style={styles.actionAddCourse}
+                            onPress={() => {
+                                navigation.navigate('Course');
+                            }}
+                        >
                             <Text style={styles.textAddCourse}>Ajouter un Cours</Text>
                         </TouchableOpacity>
                         <TouchableOpacity
