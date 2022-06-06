@@ -1,10 +1,20 @@
-import { StatusBar, StyleSheet, Text, View, TouchableOpacity, Image, TextInput } from 'react-native';
+import React, { useContext, useState } from "react";
+import { StatusBar, StyleSheet, Text, View, TouchableOpacity, Image, TextInput, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../../theme/colors';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 function Register({ navigation }) {
+
+    const [name, setName] = useState(null);
+    const [email, setEmail] = useState(null);
+    const [password, setPassword] = useState(null);
+
+    const { isLoading, register } = useContext(AuthContext);
+
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle='light' backgroundColor={colors.PRIMARY} />
@@ -20,21 +30,48 @@ function Register({ navigation }) {
                 </Text>
                 <View style={styles.inputBox}>
                     <MaterialCommunityIcons name="account" size={30} color={colors.GRAY} />
-                    <TextInput style={styles.input} placeholder="Nom d'Utilisateur" />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Nom d'Utilisateur"
+                        value={name}
+                        editable={!isLoading}
+                        onChangeText={text => setName(text)}
+                    />
                 </View>
                 <View style={styles.inputBox}>
                     <MaterialCommunityIcons name="email" size={30} color={colors.GRAY} />
-                    <TextInput style={styles.input} placeholder='Adresse Email' />
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Adresse Email'
+                        value={email}
+                        editable={!isLoading}
+                        onChangeText={text => setEmail(text)}
+                    />
                 </View>
                 <View style={styles.inputBox}>
                     <MaterialCommunityIcons name="lock" size={30} color={colors.GRAY} />
-                    <TextInput style={styles.input} placeholder='Mot de Passe' secureTextEntry />
+                    <TextInput style={styles.input}
+                        placeholder='Mot de Passe'
+                        secureTextEntry
+                        value={password}
+                        editable={!isLoading}
+                        onChangeText={text => setPassword(text)}
+                    />
                 </View>
 
                 <TouchableOpacity
                     style={styles.action}
+                    onPress={() => {
+                        register(name, email, password);
+                    }}
+                    disabled={isLoading}
                 >
-                    <Text style={styles.actionText}>S'inscrire</Text>
+                    {isLoading ? (
+                        <ActivityIndicator size="large" color={colors.WHITE} />
+
+                    ) : (
+                        <Text style={styles.actionText}>S'inscrire</Text>
+                    )}
                 </TouchableOpacity>
                 <View style={styles.memberSection}>
                     <Text style={styles.memberText}>Deja membre ? </Text>

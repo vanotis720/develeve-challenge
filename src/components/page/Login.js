@@ -1,10 +1,17 @@
-import { StatusBar, StyleSheet, Text, View, TouchableOpacity, Image, TextInput } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, TouchableOpacity, Image, TextInput, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../../theme/colors';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../providers/AuthProvider';
 
 
 function Login({ navigation }) {
+
+    const [email, setEmail] = useState(null);
+    const [password, setPassword] = useState(null);
+    const { isLoading, login } = useContext(AuthContext);
+
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle='light' backgroundColor={colors.PRIMARY} />
@@ -20,17 +27,38 @@ function Login({ navigation }) {
                 </Text>
                 <View style={styles.inputBox}>
                     <MaterialCommunityIcons name="email" size={30} color={colors.GRAY} />
-                    <TextInput style={styles.input} placeholder="Adresse Email/Nom d'utilisateur" />
+                    <TextInput style={styles.input}
+                        placeholder="Adresse Email/Nom d'utilisateur"
+                        value={email}
+                        onChangeText={text => setEmail(text)}
+                        editable={!isLoading}
+                    />
                 </View>
                 <View style={styles.inputBox}>
                     <MaterialCommunityIcons name="lock" size={30} color={colors.GRAY} />
-                    <TextInput style={styles.input} placeholder='Mot de Passe' secureTextEntry />
+                    <TextInput
+                        style={styles.input}
+                        placeholder='Mot de Passe'
+                        value={password}
+                        onChangeText={text => setPassword(text)}
+                        secureTextEntry
+                        editable={!isLoading}
+                    />
                 </View>
 
                 <TouchableOpacity
                     style={styles.action}
+                    onPress={() => {
+                        login(email, password);
+                    }}
+                    disabled={isLoading}
                 >
-                    <Text style={styles.actionText}>Se connecter</Text>
+                    {isLoading ? (
+                        <ActivityIndicator size="large" color={colors.WHITE} />
+
+                    ) : (
+                        <Text style={styles.actionText}>Se connecter</Text>
+                    )}
                 </TouchableOpacity>
                 <View style={styles.memberSection}>
                     <Text style={styles.memberText}>Vous n'avez pas de compte ? </Text>

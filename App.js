@@ -1,12 +1,23 @@
-import { NavigationContainer } from '@react-navigation/native';
-import AppBottom from './src/navigation/AppBottom';
-import StartedStack from './src/navigation/StartedStack';
+import * as React from 'react';
+import { StatusBar } from 'react-native';
+import AppRoute from './src/navigation/AppRoute';
+// import { store } from './src/redux/store';
+// import { Provider } from 'react-redux';
+import { AuthProvider } from './src/providers/AuthProvider';
+
+
 
 export default function App() {
 	return (
-		<NavigationContainer>
-			{/* <StartedStack /> */}
-			<AppBottom />
-		</NavigationContainer>
+		// <>
+		// 	<Provider store={store}>
+		// 		<AppRoute />
+		// 		<StatusBar style="auto" />
+		// 	</Provider>
+		// </>
+		<AuthProvider>
+			<StatusBar backgroundColor="#06bcee" />
+			<AppRoute />
+		</AuthProvider>
 	);
 }

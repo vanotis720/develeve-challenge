@@ -2,7 +2,7 @@
   "expo": {
     "name": "develeve",
     "slug": "develeve",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -23,8 +23,10 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#187265"
+      },
+      "package": "com.vanotis720.develeve",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"
