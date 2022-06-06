@@ -296,17 +296,17 @@ const styles = StyleSheet.create({
     courseCardAuthor: {
         flex: 1,
         backgroundColor: colors.PUREWHITE,
-        width: '40%',
+        width: '50%',
         borderRadius: 15,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: -30,
+        marginTop: '-20%',
         elevation: 10,
         shadowColor: colors.BLACK,
     },
     authorName: {
         color: colors.BLACK,
-        fontSize: 13,
+        fontSize: 15,
     },
 
 
