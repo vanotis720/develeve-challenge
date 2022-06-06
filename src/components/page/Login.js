@@ -2,9 +2,23 @@ import { StatusBar, StyleSheet, Text, View, TouchableOpacity, Image, TextInput }
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../../theme/colors';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { useDispatch } from 'react-redux';
+import { setSignIn } from '../../redux/slices/authSlice';
 
 
 function Login({ navigation }) {
+
+    const dispatch = useDispatch();
+
+    const handleLogin = () => {
+        const user = {
+            isLoggedIn: true,
+            email: 'business@vanotis720.tech',
+            userName: 'vanotis720'
+        };
+
+        dispatch(setSignIn(user));
+    }
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle='light' backgroundColor={colors.PRIMARY} />
@@ -29,6 +43,7 @@ function Login({ navigation }) {
 
                 <TouchableOpacity
                     style={styles.action}
+                    onPress={() => handleLogin()}
                 >
                     <Text style={styles.actionText}>Se connecter</Text>
                 </TouchableOpacity>

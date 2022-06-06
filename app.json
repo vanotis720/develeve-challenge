@@ -25,10 +25,8 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#187265"
       },
-      "android": {
-        "package": "com.vanotis720.develeve",
-        "versionCode": 1
-      }
+      "package": "com.vanotis720.develeve",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"

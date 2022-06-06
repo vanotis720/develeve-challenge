@@ -1,37 +1,18 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import AppBottom from './src/navigation/AppBottom';
-import StartedStack from './src/navigation/StartedStack';
+import AppRoute from './src/navigation/AppRoute';
+import { store } from './src/redux/store';
+import { StatusBar } from 'expo-status-bar';
+import { Provider } from 'react-redux';
+
 
 
 export default function App() {
-	const [state, setState] = React.useState(false);
-
-	React.useEffect(() => {
-		// Fetch the token from storage then navigate to our appropriate place
-		const bootstrapAsync = async () => {
-			let userName;
-
-			try {
-				userName = await AsyncStorage.getItem('username');
-				(userName != null) ? setState(true) : '';
-				console.log(userName);
-			} catch (e) {
-				// Restoring token failed
-			}
-		};
-
-		bootstrapAsync();
-	}, []);
-
 	return (
-		<NavigationContainer>
-			{state == false ? (
-				<StartedStack />
-			) : (
-				<AppBottom />
-			)}
-		</NavigationContainer>
+		<>
+			<Provider store={store}>
+				<AppRoute />
+				<StatusBar style="auto" />
+			</Provider>
+		</>
 	);
 }

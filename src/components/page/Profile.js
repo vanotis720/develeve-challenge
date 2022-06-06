@@ -3,34 +3,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar, StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../../theme/colors';
+import { selectEmail, selectUserName, setSignOut } from '../../redux/slices/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Profile({ navigation }) {
-    const [username, setUsername] = React.useState('default');
+    const userName = useSelector(selectUserName);
+    const userEmail = useSelector(selectEmail);
 
-    React.useEffect(() => {
-        const bootstrapAsync = async () => {
+    const dispatch = useDispatch();
 
-            try {
-                setUsername(await AsyncStorage.getItem('username'));
-
-            } catch (e) {
-                setUsername('anonyme');
-            }
-        };
-
-        bootstrapAsync();
-    }, []);
-
-    const logout = async () => {
-        try {
-            await AsyncStorage.removeItem('username');
-        } catch (e) {
-            // remove error
-        }
-
-        console.log('logged out.')
+    const handleLogout = () => {
+        dispatch(setSignOut());
     }
-
 
     return (
         <SafeAreaView style={styles.container}>
@@ -44,8 +28,8 @@ function Profile({ navigation }) {
                         />
                         <View style={styles.userCardInformation}>
                             <View style={{ flex: 1, paddingBottom: 10 }}>
-                                <Text style={styles.username}>{username}</Text>
-                                <Text style={styles.email}>business@vanotis720.tech</Text>
+                                <Text style={styles.username}>{userName}</Text>
+                                <Text style={styles.email}>{userEmail}</Text>
                             </View>
                             <View style={styles.statsCard}>
                                 <View style={styles.statsContent}>
@@ -69,7 +53,7 @@ function Profile({ navigation }) {
                         </TouchableOpacity>
                         <TouchableOpacity
                             style={styles.actionLogout}
-                            onPress={() => logout()}
+                            onPress={() => handleLogout()}
                         >
                             <Text style={styles.textActionLogout}>Se deconnecter</Text>
                         </TouchableOpacity>
