@@ -8,7 +8,6 @@ import {
     RichToolbar,
 } from "react-native-pell-rich-editor";
 import { useRef, useState } from 'react';
-import HTMLView from "react-native-htmlview";
 
 
 function CourseForm({ navigation }) {

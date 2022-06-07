@@ -1,4 +1,4 @@
-import { StatusBar, StyleSheet, ScrollView } from 'react-native';
+import { StatusBar, StyleSheet, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../../theme/colors';
 import CourseItem from './CourseItem';
@@ -7,6 +7,9 @@ function Home({ navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle='light' backgroundColor={colors.PRIMARY} />
+            <View style={styles.userPart}>
+
+            </View>
             <ScrollView style={{ flex: 1 }}>
                 <CourseItem navigation={navigation} />
             </ScrollView>
@@ -21,6 +24,10 @@ const styles = StyleSheet.create({
         backgroundColor: colors.WHITE,
         marginHorizontal: 10,
     },
+    userPart: {
+        flex: 1,
+
+    }
 });
 
 
