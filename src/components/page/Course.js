@@ -7,9 +7,10 @@ import RenderHtml from 'react-native-render-html';
 
 const source = {
     html: `
-<p style="color:blue;font-size:46px;">
-      I'm a big, blue, <strong>strong</strong> paragraph
-    </p>
+    <p>Browsers usually insert quotation marks around the q element.</p>
+
+<p>WWF's goal is to: <q>Build a future where people live in harmony with nature.</q></p>
+
     <h2>HTML Tables</h2>
 
 <p>HTML tables start with a table tag.</p>
@@ -52,19 +53,21 @@ const source = {
     <td>700</td>
     <td>800</td>
     <td>900</td>
-  </tr>`
+  </tr>
+  </table>
+  <br/>`
 };
 
 function Course({ navigation }) {
-    const { width } = useWindowDimensions();
+    const { width, height } = useWindowDimensions();
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle='light' backgroundColor={colors.PRIMARY} />
-            <View style={{ flex: 1 }}>
+            <ScrollView style={{ flex: 1 }}>
                 <View style={styles.sectionCover}>
                     <Image
                         source={require('../../assets/images/defaultAvatar.jpeg')}
-                        style={styles.courseCover}
+                        style={[styles.courseCover, { height: height / 4 }]}
                     />
                     <TouchableOpacity
                         onPress={() => { navigation.goBack() }}
@@ -96,7 +99,7 @@ function Course({ navigation }) {
                         source={source}
                     />
                 </View>
-            </View>
+            </ScrollView>
         </SafeAreaView>
     )
 }
@@ -109,19 +112,20 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
     },
     sectionCover: {
-        flex: 3,
+        flex: 2,
         marginVertical: 5,
     },
     courseCover: {
         flex: 1,
-        height: '100%',
         width: '100%',
         resizeMode: 'contain',
         borderRadius: 5,
     },
     sectionTitle: {
-        flex: 2,
-        marginVertical: 5,
+        flex: 1,
+        marginTop: 5,
+        marginBottom: 10
+
     },
     title: {
         color: colors.PRIMARY,
