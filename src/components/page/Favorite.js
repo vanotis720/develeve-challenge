@@ -11,7 +11,7 @@ function Favorite({ navigation }) {
                 <Text style={styles.title}>Vos Favoris</Text>
             </View>
             <ScrollView style={{ flex: 1 }}>
-                <CourseItem />
+                <CourseItem navigation={navigation} />
             </ScrollView>
         </SafeAreaView>
     )

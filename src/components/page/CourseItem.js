@@ -1,11 +1,13 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, useWindowDimensions } from 'react-native';
 import colors from '../../theme/colors';
 
-function CourseItem() {
+function CourseItem({ navigation }) {
+    const { width, height } = useWindowDimensions();
+
     return (
         <TouchableOpacity
-            style={styles.courseCard}
-            onPress={() => { alert('go to course detail') }}
+            style={[styles.courseCard, { height: height / 3 }]}
+            onPress={() => { navigation.navigate("Course") }}
         >
             <View style={styles.courseCardHeader}>
                 <Image
@@ -14,8 +16,13 @@ function CourseItem() {
                 />
             </View>
             <View style={styles.courseCardContent}>
-                <View style={styles.courseCardAuthor}>
-                    <Text style={styles.authorName} adjustsFontSizeToFit={true} numberOfLines={1}>
+                <View style={[styles.courseCardAuthor, { width: width / 1.8, height: height }]}>
+                    <Image
+                        source={require('../../assets/images/defaultAvatar.jpeg')}
+                        style={styles.authorAvatar}
+                        resizeMode={'contain'}
+                    />
+                    <Text style={styles.authorName} adjustsFontSizeToFit={true} numberOfLines={2}>
                         Jean-marie Luckas
                     </Text>
                 </View>
@@ -34,7 +41,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.PUREWHITE,
         width: '100%',
-        height: 200,
         borderRadius: 15,
         paddingBottom: 15,
         marginBottom: 15,
@@ -66,18 +72,31 @@ const styles = StyleSheet.create({
     courseCardAuthor: {
         flex: 1,
         backgroundColor: colors.PUREWHITE,
-        width: '40%',
-        borderRadius: 10,
+        borderRadius: 75,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: '-15%',
         elevation: 10,
-        shadowColor: colors.PRIMARY,
+        shadowColor: colors.BLACK,
+        flexDirection: 'row',
+        paddingHorizontal: 5
     },
     authorName: {
-        color: colors.BLACK,
+        color: colors.GRAY,
         fontSize: 15,
-    }
+        marginEnd: 10
+    },
+    authorAvatar: {
+        flex: 1,
+        height: '90%',
+        width: '90%',
+        resizeMode: 'contain',
+        borderRadius: 75,
+        borderWidth: 2,
+        borderColor: colors.WHITE,
+        marginVertical: 10,
+        marginEnd: 5
+    },
 });
 
 

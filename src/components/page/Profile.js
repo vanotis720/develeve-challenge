@@ -46,7 +46,7 @@ function Profile({ navigation }) {
                         <TouchableOpacity
                             style={styles.actionAddCourse}
                             onPress={() => {
-                                navigation.navigate('Course');
+                                navigation.navigate('CourseForm');
                             }}
                         >
                             <Text style={styles.textAddCourse}>Ajouter un Cours</Text>
@@ -66,7 +66,7 @@ function Profile({ navigation }) {
                 <Text style={styles.sectionTitle}>Cours en tendances</Text>
 
                 <ScrollView style={{ flex: 1 }}>
-                    <CourseItem />
+                    <CourseItem navigation={navigation} />
                 </ScrollView>
             </View>
         </SafeAreaView>
