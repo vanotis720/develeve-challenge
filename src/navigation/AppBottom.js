@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../components/page/Home';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import colors from '../theme/colors';
 import Profile from '../components/page/Profile';
 import Favorite from '../components/page/Favorite';
 import CourseForm from '../components/page/CourseForm';
+import CourseStack from './CourseStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -19,8 +19,8 @@ export default function AppBottom() {
             }}
         >
             <Tab.Screen
-                name="Home"
-                component={Home}
+                name="CourseStack"
+                component={CourseStack}
                 options={{
                     tabBarLabel: 'Accueil',
                     tabBarIcon: ({ color, size }) => (
@@ -30,7 +30,7 @@ export default function AppBottom() {
                 }}
             />
             <Tab.Screen
-                name="Course"
+                name="CourseForm"
                 component={CourseForm}
                 options={{
                     tabBarLabel: 'Cours',

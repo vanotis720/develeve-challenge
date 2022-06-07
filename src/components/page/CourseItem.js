@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import colors from '../../theme/colors';
 
-function CourseItem() {
+function CourseItem({ navigation }) {
     return (
         <TouchableOpacity
             style={styles.courseCard}
-            onPress={() => { alert('go to course detail') }}
+            onPress={() => { navigation.navigate("Course") }}
         >
             <View style={styles.courseCardHeader}>
                 <Image
