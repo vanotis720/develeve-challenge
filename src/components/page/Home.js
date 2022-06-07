@@ -8,7 +8,7 @@ function Home({ navigation }) {
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle='light' backgroundColor={colors.PRIMARY} />
             <ScrollView style={{ flex: 1 }}>
-                <CourseItem />
+                <CourseItem navigation={navigation} />
             </ScrollView>
         </SafeAreaView>
     )

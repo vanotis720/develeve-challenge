@@ -20,16 +20,13 @@ export const AuthProvider = ({ children }) => {
         })
             .then(res => {
                 let userInfo = res.data;
-                console.log(userInfo);
                 if (userInfo.status == "Success") {
                     setUserInfo(userInfo.data);
                     AsyncStorage.setItem('userInfo', JSON.stringify(userInfo.data));
                     setIsLoading(false);
-                    console.log(userInfo);
                 }
                 else {
                     setIsLoading(false);
-                    console.log(userInfo);
                 }
             })
             .catch(e => {
@@ -51,7 +48,6 @@ export const AuthProvider = ({ children }) => {
                     setUserInfo(userInfo.data);
                     AsyncStorage.setItem('userInfo', JSON.stringify(userInfo.data));
                     setIsLoading(false);
-                    console.log(userInfo.data);
                 }
             })
             .catch(e => {
@@ -62,7 +58,6 @@ export const AuthProvider = ({ children }) => {
 
     const logout = () => {
         setIsLoading(true);
-
         setUserInfo({});
         AsyncStorage.removeItem('userInfo');
         setIsLoading(false);
@@ -81,7 +76,6 @@ export const AuthProvider = ({ children }) => {
             setSplashLoading(false);
         } catch (e) {
             setSplashLoading(false);
-            console.log(`is logged in error ${e}`);
         }
     };
 
