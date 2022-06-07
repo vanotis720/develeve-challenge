@@ -1,10 +1,62 @@
-import { StatusBar, StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { StatusBar, StyleSheet, View, Text, TouchableOpacity, Image, useWindowDimensions, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../../theme/colors';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import RenderHtml from 'react-native-render-html';
 
+
+const source = {
+    html: `
+<p style="color:blue;font-size:46px;">
+      I'm a big, blue, <strong>strong</strong> paragraph
+    </p>
+    <h2>HTML Tables</h2>
+
+<p>HTML tables start with a table tag.</p>
+<p>Table rows start with a tr tag.</p>
+<p>Table data start with a td tag.</p>
+
+<hr>
+<h2>1 Column:</h2>
+
+<table>
+  <tr>
+    <td>100</td>
+  </tr>
+</table>
+
+<hr>
+<h2>1 Row and 3 Columns:</h2>
+<table>
+  <tr>
+    <td>100</td>
+    <td>200</td>
+    <td>300</td>
+  </tr>
+</table>
+
+<hr>
+<h2>3 Rows and 3 Columns:</h2>
+<table>
+  <tr>
+    <td>100</td>
+    <td>200</td>
+    <td>300</td>
+  </tr>
+  <tr>
+    <td>400</td>
+    <td>500</td>
+    <td>600</td>
+  </tr>
+  <tr>
+    <td>700</td>
+    <td>800</td>
+    <td>900</td>
+  </tr>`
+};
 
 function Course({ navigation }) {
+    const { width } = useWindowDimensions();
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle='light' backgroundColor={colors.PRIMARY} />
@@ -39,7 +91,10 @@ function Course({ navigation }) {
                     <Text style={styles.subTitle}>Par Jean-Marie Losa - HTML</Text>
                 </View>
                 <View style={styles.content}>
-                    {/* content */}
+                    <RenderHtml
+                        contentWidth={width}
+                        source={source}
+                    />
                 </View>
             </View>
         </SafeAreaView>
