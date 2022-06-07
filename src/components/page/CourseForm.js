@@ -12,11 +12,9 @@ import { useRef, useState } from 'react';
 
 function CourseForm({ navigation }) {
     const richText = useRef();
-    const { width, height } = useWindowDimensions();
 
     const [title, setTitle] = useState(null);
     const [article, setArticle] = useState("");
-    const strikethrough = require('../../assets/images/defaultAvatar.jpeg');
 
     function editorInitializedCallback() {
         richText.current?.registerToolbar(function (items) {
