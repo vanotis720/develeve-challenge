@@ -10,6 +10,11 @@ const source = {
     <p>Browsers usually insert quotation marks around the q element.</p>
 
 <p>WWF's goal is to: <q>Build a future where people live in harmony with nature.</q></p>
+<img
+  width="100%" height="100%"
+  style="width: 50%; height: 100px; align-self: center;"
+  src="http://placeimg.com/1200/800/animals"
+/>
 
     <h2>HTML Tables</h2>
 
