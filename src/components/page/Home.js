@@ -15,7 +15,7 @@ function Home({ navigation }) {
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle='light' backgroundColor={colors.PRIMARY} />
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={[styles.userPart, { height: height / 7 }]}>
                     <Text style={styles.userTitle}>
                         Welcome back, {userInfo.name}
@@ -43,6 +43,53 @@ function Home({ navigation }) {
                         <FontAwesome name="search" color={colors.GRAY} size={25} />
                     </TouchableOpacity>
                 </View>
+                <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                    style={styles.tagPart}>
+                    <TouchableOpacity
+                        onPress={() => { alert('tag') }}
+                        style={styles.tagCard} >
+                        <Text style={styles.tagTitle}>
+                            Web
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { alert('tag') }}
+                        style={styles.tagCard} >
+                        <Text style={styles.tagTitle}>
+                            Mobile
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { alert('tag') }}
+                        style={styles.tagCard} >
+                        <Text style={styles.tagTitle}>
+                            Desktop
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { alert('tag') }}
+                        style={styles.tagCard} >
+                        <Text style={styles.tagTitle}>
+                            Game
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { alert('tag') }}
+                        style={styles.tagCard} >
+                        <Text style={styles.tagTitle}>
+                            AI/DATA Modeling
+                        </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => { alert('tag') }}
+                        style={styles.tagCard} >
+                        <Text style={styles.tagTitle}>
+                            UI/UX
+                        </Text>
+                    </TouchableOpacity>
+                </ScrollView>
                 <View style={{ flex: 5, marginHorizontal: 15, }}>
                     <CourseItem navigation={navigation} />
                     <CourseItem navigation={navigation} />
@@ -85,14 +132,32 @@ const styles = StyleSheet.create({
         height: 50,
         marginHorizontal: 15,
         marginBottom: 15,
-
     },
     inputSearch: {
         paddingHorizontal: 20,
         backgroundColor: colors.PUREWHITE,
         borderRadius: 20,
         height: 50,
-    }
+    },
+    tagPart: {
+        flex: 1,
+        flexDirection: 'row',
+        marginHorizontal: 15,
+        marginBottom: 15,
+    },
+    tagCard: {
+        backgroundColor: colors.PUREWHITE,
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 15,
+        marginEnd: 15,
+    },
+    tagTitle: {
+        fontSize: 15,
+        color: colors.BLACK,
+        fontWeight: '500',
+    },
 });
 
 
