@@ -8,8 +8,7 @@ import {
     RichToolbar,
 } from "react-native-pell-rich-editor";
 import { useRef, useState } from 'react';
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import RenderHtml from 'react-native-render-html';
+import HTMLView from "react-native-htmlview";
 
 
 function CourseForm({ navigation }) {
@@ -22,7 +21,7 @@ function CourseForm({ navigation }) {
 
     function editorInitializedCallback() {
         richText.current?.registerToolbar(function (items) {
-            // items contain all the actions that are currently active
+            // items contain all the actions that are currently active 
             console.log(
                 "Toolbar click, selected items (insert end callback):",
                 items
@@ -77,6 +76,7 @@ function CourseForm({ navigation }) {
                     />
                 </KeyboardAvoidingView>
             </ScrollView>
+
             <RichToolbar
                 editor={richText}
                 style={[styles.richBar]}
@@ -96,13 +96,13 @@ function CourseForm({ navigation }) {
                     actions.redo,
 
                 ]}
-                // map icons for self made actions
                 iconMap={{
                     [actions.heading1]: ({ tintColor }) => (
                         <Text style={[styles.tib, { color: tintColor }]}>H1</Text>
                     ),
                 }}
             />
+
         </SafeAreaView>
     )
 }
