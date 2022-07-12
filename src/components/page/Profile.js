@@ -9,7 +9,6 @@ import CourseItem from "./CourseItem";
 function Profile({ navigation }) {
 
     const { isLoading, logout, userInfo } = useContext(AuthContext);
-    console.log(userInfo);
 
     return (
         <SafeAreaView style={styles.container}>

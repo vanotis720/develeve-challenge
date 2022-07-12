@@ -10,7 +10,6 @@ import { AuthContext } from '../providers/AuthProvider';
 const AppRoute = () => {
 
     const { userInfo, splashLoading } = useContext(AuthContext);
-    console.log(userInfo);
 
     return (
         <NavigationContainer>
