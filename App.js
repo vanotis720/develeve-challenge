@@ -1,23 +1,22 @@
 import * as React from 'react';
 import { StatusBar } from 'react-native';
+import Onboard from './src/components/page/Onboard';
 import AppRoute from './src/navigation/AppRoute';
-// import { store } from './src/redux/store';
-// import { Provider } from 'react-redux';
 import { AuthProvider } from './src/providers/AuthProvider';
 
 
 
 export default function App() {
+	const [firstTime, setFirstTime] = React.useState(true);
+
+	const onFinish = () => {
+		setFirstTime(false);
+	}
+
 	return (
-		// <>
-		// 	<Provider store={store}>
-		// 		<AppRoute />
-		// 		<StatusBar style="auto" />
-		// 	</Provider>
-		// </>
 		<AuthProvider>
 			<StatusBar backgroundColor="#06bcee" />
-			<AppRoute />
+			{firstTime ? <Onboard onFinish={onFinish} /> : <AppRoute />}
 		</AuthProvider>
 	);
 }

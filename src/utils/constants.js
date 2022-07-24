@@ -1,9 +1,9 @@
 
 //API URL
-export const BASE_URL = "https://dealapi.herokuapp.com/api"
+export const BASE_URL = "https://challenge.develeve.tech/api"
 
 //API End Points
-export const REGISTER = `${BASE_URL}/register`;
+export const REGISTER = `${BASE_URL}/signup`;
 export const LOGIN = `${BASE_URL}/login`;
 export const PROFILE = `${BASE_URL}/profile`;
 export const AVATAR = `${BASE_URL}/avatar`;
