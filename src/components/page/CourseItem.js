@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image, useWindowDimensions } from 'react-native';
 import colors from '../../theme/colors';
 
-function CourseItem({ navigation }) {
+function CourseItem({ course, navigation }) {
     const { width, height } = useWindowDimensions();
 
     return (
@@ -11,7 +11,7 @@ function CourseItem({ navigation }) {
         >
             <View style={styles.courseCardHeader}>
                 <Image
-                    source={require('../../assets/images/defaultAvatar.png')}
+                    source={require('../../assets/images/undraw_writer_q06d.png')}
                     style={styles.courseCover}
                 />
             </View>
@@ -23,13 +23,11 @@ function CourseItem({ navigation }) {
                         resizeMode={'contain'}
                     />
                     <Text style={styles.authorName} adjustsFontSizeToFit={true} numberOfLines={2}>
-                        Jean-marie Luckas
+                        {course.user_id}
                     </Text>
                 </View>
-                <Text style={styles.courseTitle}>Le web 3</Text>
-                <Text style={styles.courseOverview}>
-                    le web 3 est fait de n'importe quoi a la base...
-                </Text>
+                <Text style={styles.courseTitle}>{course.title}</Text>
+                {/* <Text style={styles.courseOverview}></Text> */}
             </View>
         </TouchableOpacity>
     )

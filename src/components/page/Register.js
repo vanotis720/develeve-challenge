@@ -14,7 +14,6 @@ function Register({ navigation }) {
 
     const { isLoading, register } = useContext(AuthContext);
 
-
     return (
         <SafeAreaView style={styles.container}>
             <StatusBar barStyle='light' backgroundColor={colors.PRIMARY} />

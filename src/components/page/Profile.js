@@ -62,11 +62,11 @@ function Profile({ navigation }) {
                 </View>
             </View>
             <View style={styles.downSection}>
-                <Text style={styles.sectionTitle}>Cours en tendances</Text>
+                {/* <Text style={styles.sectionTitle}>Cours en tendances</Text> */}
 
-                <ScrollView style={{ flex: 1 }}>
+                {/* <ScrollView style={{ flex: 1 }}>
                     <CourseItem navigation={navigation} />
-                </ScrollView>
+                </ScrollView> */}
             </View>
         </SafeAreaView>
     )
