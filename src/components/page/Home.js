@@ -111,7 +111,7 @@ function Home({ navigation }) {
                                 showsHorizontalScrollIndicator={false}
                             />
                         </View>
-                        <View style={{ flex: 5, marginHorizontal: 15, }}>
+                        <View style={{ flex: 5.5, marginHorizontal: 15, }}>
                             {
                                 courses.length > 0 ?
                                     <FlatList data={courses} renderItem={({ item }) => <CourseItem course={item} navigation={navigation} />} />
@@ -164,9 +164,9 @@ const styles = StyleSheet.create({
         height: 50,
     },
     tagPart: {
-        flex: 1,
+        flex: 0.5,
         flexDirection: 'row',
-        marginHorizontal: 15,
+        margin: 15,
         marginBottom: 15,
     },
     tagCard: {
