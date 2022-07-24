@@ -1,52 +1,82 @@
 import React from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, Dimensions } from "react-native";
 import AppIntroSlider from 'react-native-app-intro-slider';
+import colors from "../../theme/colors";
+import { MaterialIcons } from '@expo/vector-icons';
 
 const slides = [
     {
         key: 1,
-        title: 'Title 1',
-        text: 'Description.\nSay something cool',
-        image: require('../../assets/images/defaultAvatar.jpeg'),
-        backgroundColor: '#59b2ab',
+        title: 'Articles technologiques',
+        text: 'Lisez les meilleurs articles de tech et restr informer vous sur les dernières technologies',
+        image: require('../../assets/images/undraw_Books_re_8gea.png'),
     },
     {
         key: 2,
-        title: 'Title 2',
-        text: 'Other cool stuff',
-        image: require('../../assets/svg/undraw_mobile_development_re_wwsn.svg'),
-        backgroundColor: '#febe29',
+        title: 'Commentaires',
+        text: 'Les commentaires sont les meilleurs moyens de partager vos idées',
+        image: require('../../assets/images/undraw_Things_to_say_re_jpcg.png'),
     },
     {
         key: 3,
-        title: 'Rocket guy',
-        text: 'I\'m already out of descriptions\n\nLorem ipsum bla bla bla',
-        image: require('../../assets/svg/undraw_mobile_development_re_wwsn.svg'),
-        backgroundColor: '#22bcb5',
+        title: 'Partagez vos connaissances',
+        text: 'Partagez vos connaissances et vos idées avec les autres',
+        image: require('../../assets/images/undraw_writer_q06d.png'),
     }
 ];
 
-const Onboard = () => {
+const { width, height } = Dimensions.get('window');
+
+const Onboard = ({ onFinish }) => {
 
     function renderItem({ item }) {
         return (
             <View style={styles.slide}>
-                <Text style={styles.title}>{item.title}</Text>
                 <Image source={item.image} style={styles.image} />
+                <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.text}>{item.text}</Text>
             </View>
         );
     }
     function onDone() {
-        // User finished the introduction. Show real app through
-        // navigation or simply by controlling state
+        onFinish();
     }
+
+
+    function renderNextButton() {
+        return (
+            <View style={styles.buttonCircle}>
+                <MaterialIcons
+                    name="forward"
+                    color={colors.PUREWHITE}
+                    size={30}
+                />
+            </View>
+        );
+    };
+    function renderDoneButton() {
+        return (
+            <View style={styles.buttonCircle}>
+                <MaterialIcons
+                    name="check"
+                    color={colors.PUREWHITE}
+                    size={30}
+                />
+            </View>
+        );
+    };
 
     return (
         <View style={styles.container}>
             <AppIntroSlider renderItem={renderItem}
                 data={slides}
-                onDone={onDone} />
+                onDone={onDone}
+                showDoneButton={true}
+                renderDoneButton={renderDoneButton}
+                renderNextButton={renderNextButton}
+                dotClickEnabled={true}
+                activeDotStyle={{ backgroundColor: colors.PRIMARY }}
+            />
         </View>
     )
 }
@@ -54,32 +84,42 @@ const Onboard = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor: colors.PUREWHITE,
+        // alignItems: 'center',
+        // justifyContent: 'center',
     },
     slide: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'gray',
         padding: 15,
     },
     title: {
-        fontSize: 20,
-        color: '#fff',
+        fontSize: height * 0.04,
+        fontWeight: 'bold',
+        color: colors.PRIMARY,
         textAlign: 'center',
-        marginTop: 10,
     },
     text: {
-        color: '#fff',
+        color: colors.BLACK,
         textAlign: 'center',
         marginTop: 10,
+        fontSize: height * 0.02,
     },
     image: {
-        width: 200,
-        height: 200,
-    }
+        width: width * 0.9,
+        height: width * 0.9,
+        resizeMode: 'contain',
+        borderRadius: width * 0.4,
+    },
+    buttonCircle: {
+        width: 50,
+        height: 50,
+        backgroundColor: colors.PRIMARY,
+        borderRadius: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
 
 

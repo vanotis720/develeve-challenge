@@ -11,14 +11,14 @@ function CourseItem({ navigation }) {
         >
             <View style={styles.courseCardHeader}>
                 <Image
-                    source={require('../../assets/images/defaultAvatar.jpeg')}
+                    source={require('../../assets/images/defaultAvatar.png')}
                     style={styles.courseCover}
                 />
             </View>
             <View style={styles.courseCardContent}>
                 <View style={[styles.courseCardAuthor, { width: width / 1.8, height: height }]}>
                     <Image
-                        source={require('../../assets/images/defaultAvatar.jpeg')}
+                        source={require('../../assets/images/defaultAvatar.png')}
                         style={styles.authorAvatar}
                         resizeMode={'contain'}
                     />

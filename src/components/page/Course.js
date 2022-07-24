@@ -71,7 +71,7 @@ function Course({ navigation }) {
             <ScrollView style={{ flex: 1 }}>
                 <View style={styles.sectionCover}>
                     <Image
-                        source={require('../../assets/images/defaultAvatar.jpeg')}
+                        source={require('../../assets/images/defaultAvatar.png')}
                         style={[styles.courseCover, { height: height / 4 }]}
                     />
                     <TouchableOpacity

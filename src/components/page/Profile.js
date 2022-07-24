@@ -17,7 +17,7 @@ function Profile({ navigation }) {
                 <View style={styles.userCard}>
                     <View style={styles.userCardHeader}>
                         <Image
-                            source={require('../../assets/images/defaultAvatar.jpeg')}
+                            source={require('../../assets/images/defaultAvatar.png')}
                             style={styles.userAvatar}
                         />
                         <View style={styles.userCardInformation}>

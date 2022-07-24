@@ -22,7 +22,7 @@ function Home({ navigation }) {
                         <MaterialCommunityIcons name="account-sync" color={colors.SECONDARY} size={30} />
                     </Text>
                     <Image
-                        source={require('../../assets/images/defaultAvatar.jpeg')}
+                        source={require('../../assets/images/defaultAvatar.png')}
                         style={styles.userAvatar}
                         resizeMode={'contain'}
                     />
@@ -116,9 +116,7 @@ const styles = StyleSheet.create({
     userAvatar: {
         flex: 1,
         height: '50%',
-        borderRadius: 75,
-        borderWidth: 4,
-        borderColor: colors.PUREWHITE,
+        borderRadius: 30,
     },
     userTitle: {
         flex: 2,
